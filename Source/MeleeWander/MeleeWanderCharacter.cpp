@@ -54,6 +54,10 @@ AMeleeWanderCharacter::AMeleeWanderCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+	//TODO Initialize the ACS
+	const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get();
+	AbilitySystemComponent = ObjectInitializer.CreateDefaultSubobject<UMeleeAbilitySystemComponent>(this, TEXT("AbilitySystemComponent"));
 }
 
 void AMeleeWanderCharacter::BeginPlay()
@@ -146,12 +150,14 @@ UAbilitySystemComponent* AMeleeWanderCharacter::GetAbilitySystemComponent() cons
 
 void AMeleeWanderCharacter::Dodge()
 {
+	//UE_LOG(LogTemplateCharacter, Display, TEXT("AMeleeWanderCharacter.Dodge"), *GetNameSafe(this));
 	//TODO 根据角色朝向和当前move 触发指定ga
 	if (UMeleeAbilitySystemComponent* ASC = GetMeleeAbilitySystemComponent())
 	{
 		UPassiveAbilityComponent* pac = FindComponentByClass<UPassiveAbilityComponent>();
 		FGameplayAbilitySpecHandle AbilitySpecHandle = pac->GetGrantedPassiveGa();
-		ASC->TryActivateAbility(AbilitySpecHandle);
+		bool res = ASC->TryActivateAbility(AbilitySpecHandle);
+		UE_LOG(LogTemplateCharacter, Display, TEXT("AMeleeWanderCharacter.Dodge.TryActivateAbility '%hhd'"), res, *GetNameSafe(this));
 	}
 }
 

@@ -13,6 +13,7 @@ UCLASS()
 class UMeleeGameplayAbility : public UGameplayAbility
 {
 	GENERATED_BODY()
+public:
 	UMeleeGameplayAbility(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
 	UFUNCTION(BlueprintCallable, Category = "Melee|Ability")

@@ -9,6 +9,7 @@
 #include "MeleeWander/MeleeWanderCharacter.h"
 #include "PassiveAbilityComponent.generated.h"
 
+class UMeleeGameplayAbility;
 /**
  * FMeleeAbilitySet_GameplayAbility
  *

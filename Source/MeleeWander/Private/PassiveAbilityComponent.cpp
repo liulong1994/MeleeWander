@@ -73,7 +73,7 @@ void UPassiveAbilityComponent::GrantPassiveAbilities()
 
 		const FGameplayAbilitySpecHandle AbilitySpecHandle = ASC->GiveAbility(AbilitySpec);
 		//Cache the object for test dodge
-		GrantedPassiveGa = AbilityCDO;
+		GrantedPassiveGa = AbilitySpecHandle;
 	}
 
 }
